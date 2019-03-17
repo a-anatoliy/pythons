@@ -1,0 +1,4 @@
+https://jenyay.net/Programming/Argparse
+https://habr.com/ru/post/144416/
+https://zlukfo.bitbucket.io/articles/python-argparse/
+https://dillinger.io
