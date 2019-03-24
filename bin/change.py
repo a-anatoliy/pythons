@@ -1,12 +1,13 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
     
-import sys
-import json
-import argparse
+import sys, json, argparse, logging
+from pprint import pformat
     
 version = "1.0.1"
-    
+logger = logging.getLogger('newlogger')
+handler = logging.FileHandler('var/log/changer.log')
+
 
 def createParser ():
     # create Parser class
@@ -26,6 +27,9 @@ if __name__ == '__main__':
 
     print('New password [%s] for the env [%s]' % (p.pswd,p.env))
     
+
+
+
 
 
 
