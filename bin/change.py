@@ -50,6 +50,15 @@ if __name__ == '__main__':
     with open(APP_CFG) as data_file:
         cfg_data = json.load(data_file)
 
+    for node in cfg_data:
+        if node == "data-backplane":
+            endpoints = cfg_data['data-backplane']
+
+    for env in endpoints:
+        if env == p.env:
+            endpoints[env]["password"] = p.pswd
+            print(endpoints[env])
+
     # logger.info(pformat(cfg_data))
 
     # Write JSON file
