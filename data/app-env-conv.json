@@ -1,28 +1,66 @@
 {
-    "widget": {
-        "debug": "on",
-        "window": {
-            "title": "Sample Konfabulator Widget",
-            "name": "main_window",
-            "width": 500,
-            "height": 500
+    "hosts" : {
+        "${hostname}":             "${globalENVsuffix}",
+        "integrationhost-ENG-A-u": "${globalENVsuffix}",
+        "integrationhost-ENG-B-u": "${globalENVsuffix}",
+        "intgerationKafka" : "DSP"
+    },
+    "data-backplane": {
+        "PROD": { "broker-bootstrap": ["some.host.com:9092", "some.host.com:9092", "some.host.com:9092"] },
+        "sPROD": {
+            "broker-bootstrap": ["some.host.com:8080", "some.host.com:8080", "some.host.com:8080"],
+            "user" : "user", "password" : ""
         },
-        "image": { 
-            "src": "Images/Sun.png",
-            "name": "sun1",
-            "hOffset": 250,
-            "vOffset": 250,
-            "alignment": "center"
+        "DEV": { "broker-bootstrap": ["some.host.com", "some.host.com:9092", "some.host.com:9092"] },
+        "sDEV": {
+            "broker-bootstrap": ["some.host.com:8080","some.host.com:8080","some.host.com:8080"],
+            "user" : "user", "password" : ""
         },
-        "text": {
-            "data": "Click Here",
-            "size": 36,
-            "style": "bold",
-            "name": "text1",
-            "hOffset": 250,
-            "vOffset": 100,
-            "alignment": "center",
-            "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
+        "TEST": { "broker-bootstrap": ["some.host.com:9092", "some.host.com:9092", "some.host.com:9092"] },
+        "sTEST": {
+            "broker-bootstrap": ["some.host.com:8080", "some.host.com:8080", "some.host.com:8080"],
+            "user" : "user", "password" : ""
+        },
+        "sENG": {
+            "broker-bootstrap": "125.125.125.125:9092",
+            "user" : "user", "password" : ""
+        }
+    },
+    "environments": {
+        "ENG": {
+            "azure": {
+                "tenant":        "${azure_tenant}",
+                "client":        "${azure_client}",
+                "client-secret": "${azure_client_secret}",
+                "subscription":  "${azure_subscription}"
+            },
+            "proxy": { "host" : "proxy-a.net" },
+            "messagequeue":{
+                "ServiceBusNamespace": "${serviceBusNamespaceName}",
+                "QueueName":           "${serviceBusQueueName}",
+                "SessionQueueName":    "${sBSessQueueName}",
+                "QueueAccessKeyName":  "Consumer",
+                "QueueAccessKeyValue": "${messagequeue_QueueAccessKeyValue}"
+            },
+            "appInsights": { "instrumentationKey": "${appInsinstrKey}" },
+            "backplane": "sDEV"
+        },
+        "DSP": {
+            "azure": {
+                "tenant": "bigstringtenant12",
+                "client": "clientstring",
+                "client-secret": "",
+                "subscription": ""
+            },
+            "proxy": { "host" : "proxy.net" },
+            "messagequeue":{
+                "ServiceBusNamespace": "some-name-DSP",
+                "QueueName": "forwarderqueue",
+                "SessionQueueName": "sessionqueue",
+                "QueueAccessKeyName": "Consumer",
+                "QueueAccessKeyValue": "connectionstring"
+            },
+            "backplane": "DEV"
         }
     }
-}
+} 
