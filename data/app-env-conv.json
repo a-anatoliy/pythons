@@ -1,22 +1,66 @@
 {
-    "glossary": {
-        "title": "example glossary",
-		"GlossDiv": {
-            "title": "S",
-			"GlossList": {
-                "GlossEntry": {
-                    "ID": "SGML",
-					"SortAs": "SGML",
-					"GlossTerm": "Standard Generalized Markup Language",
-					"Acronym": "SGML",
-					"Abbrev": "ISO 8879:1986",
-					"GlossDef": {
-                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
-						"GlossSeeAlso": ["GML", "XML"]
-                    },
-					"GlossSee": "markup"
-                }
-            }
+    "hosts" : {
+        "${hostname}":             "${globalENVsuffix}",
+        "integrationhost-ENG-A-u": "${globalENVsuffix}",
+        "integrationhost-ENG-B-u": "${globalENVsuffix}",
+        "intgerationKafka" : "DSP"
+    },
+    "data-backplane": {
+        "PROD": { "broker-bootstrap": ["some.host.com:9092", "some.host.com:9092", "some.host.com:9092"] },
+        "sPROD": {
+            "broker-bootstrap": ["some.host.com:8080", "some.host.com:8080", "some.host.com:8080"],
+            "user" : "user", "password" : ""
+        },
+        "DEV": { "broker-bootstrap": ["some.host.com", "some.host.com:9092", "some.host.com:9092"] },
+        "sDEV": {
+            "broker-bootstrap": ["some.host.com:8080","some.host.com:8080","some.host.com:8080"],
+            "user" : "user", "password" : ""
+        },
+        "TEST": { "broker-bootstrap": ["some.host.com:9092", "some.host.com:9092", "some.host.com:9092"] },
+        "sTEST": {
+            "broker-bootstrap": ["some.host.com:8080", "some.host.com:8080", "some.host.com:8080"],
+            "user" : "user", "password" : ""
+        },
+        "sENG": {
+            "broker-bootstrap": "125.125.125.125:9092",
+            "user" : "user", "password" : ""
+        }
+    },
+    "environments": {
+        "ENG": {
+            "azure": {
+                "tenant":        "${azure_tenant}",
+                "client":        "${azure_client}",
+                "client-secret": "${azure_client_secret}",
+                "subscription":  "${azure_subscription}"
+            },
+            "proxy": { "host" : "proxy-a.net" },
+            "messagequeue":{
+                "ServiceBusNamespace": "${serviceBusNamespaceName}",
+                "QueueName":           "${serviceBusQueueName}",
+                "SessionQueueName":    "${sBSessQueueName}",
+                "QueueAccessKeyName":  "Consumer",
+                "QueueAccessKeyValue": "${messagequeue_QueueAccessKeyValue}"
+            },
+            "appInsights": { "instrumentationKey": "${appInsinstrKey}" },
+            "backplane": "sDEV"
+        },
+        "DSP": {
+            "azure": {
+                "tenant": "bigstringtenant12",
+                "client": "clientstring",
+                "client-secret": "",
+                "subscription": ""
+            },
+            "proxy": { "host" : "proxy.net" },
+            "messagequeue":{
+                "ServiceBusNamespace": "some-name-DSP",
+                "QueueName": "forwarderqueue",
+                "SessionQueueName": "sessionqueue",
+                "QueueAccessKeyName": "Consumer",
+                "QueueAccessKeyValue": "connectionstring"
+            },
+            "backplane": "DEV"
         }
     }
-}
+} 
