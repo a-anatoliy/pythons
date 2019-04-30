@@ -1,15 +1,15 @@
 {
     "hosts" : {
-        "${hostname}":             "${globalENVsuffix}",
-        "integrationhost-ENG-A-u": "${globalENVsuffix}",
-        "integrationhost-ENG-B-u": "${globalENVsuffix}",
+        "hostname":                "globalENVsuffix",
+        "integrationhost-ENG-A-u": "globalENVsuffix",
+        "integrationhost-ENG-B-u": "globalENVsuffix",
         "intgerationKafka" : "DSP"
     },
     "data-backplane": {
         "PROD": { "broker-bootstrap": ["some.host.com:9092", "some.host.com:9092", "some.host.com:9092"] },
         "sPROD": {
             "broker-bootstrap": ["some.host.com:8080", "some.host.com:8080", "some.host.com:8080"],
-            "user" : "user", "password" : ""
+            "user" : "user", "password" : "somep@$$vv0rD"
         },
         "DEV": { "broker-bootstrap": ["some.host.com", "some.host.com:9092", "some.host.com:9092"] },
         "sDEV": {
@@ -29,20 +29,20 @@
     "environments": {
         "ENG": {
             "azure": {
-                "tenant":        "${azure_tenant}",
-                "client":        "${azure_client}",
-                "client-secret": "${azure_client_secret}",
-                "subscription":  "${azure_subscription}"
+                "tenant":        "e569f29e-b008-4cea-b6f0-48fa8532d64a",
+                "client":        "24cd7f6c-69e6-452e-bf11-ae6f1fa12d00",
+                "client-secret": "eq51fgsd-vfsg-4cea-b6f0-48sdfvxcvgbs",
+                "subscription":  "9d5be18c-4970-4a9c-8af7-c0dda18b2e23"
             },
             "proxy": { "host" : "proxy-a.net" },
             "messagequeue":{
-                "ServiceBusNamespace": "${serviceBusNamespaceName}",
-                "QueueName":           "${serviceBusQueueName}",
-                "SessionQueueName":    "${sBSessQueueName}",
+                "ServiceBusNamespace": "serviceBusNamespaceName",
+                "QueueName":           "serviceBusQueueName",
+                "SessionQueueName":    "sBSessQueueName",
                 "QueueAccessKeyName":  "Consumer",
-                "QueueAccessKeyValue": "${messagequeue_QueueAccessKeyValue}"
+                "QueueAccessKeyValue": "messagequeue_QueueAccessKeyValue"
             },
-            "appInsights": { "instrumentationKey": "${appInsinstrKey}" },
+            "appInsights": { "instrumentationKey": "a0471d14-9300-4177-ab08-5c45adb3476b" },
             "backplane": "sDEV"
         },
         "DSP": {
